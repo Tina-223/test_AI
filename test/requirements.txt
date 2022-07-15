@@ -24,7 +24,7 @@ torchaudio==0.8.0
 pytorch_lightning==1.2.10
 transformers
 torchtext==0.9.0
-numpy
+# numpy
 sentence-transformers
 konlpy
 googletrans==4.0.0-rc1
