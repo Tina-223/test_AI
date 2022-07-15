@@ -1,8 +1,8 @@
 from typing_extensions import Self
-from django.shortcuts import render
-from django.views import View
-# from .models import AI
-from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
+# from django.shortcuts import render
+# from django.views import View
+# # from .models import AI
+# from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 
 import numpy as np
 import itertools
@@ -222,16 +222,13 @@ class aiView(View):
             방안에 틀어박히기 보다 나와서 운동을 했더니 기분이 너무 좋았다.
             앞으로 시간이 날 때마다 자주 산에 와야겠다.
         """
-        if doc is None:
-            return HttpResponseBadRequest()
-        else:
-            emotion = get_emotion(doc)
-            comm_emo = comment_emo(emotion)
-            keyW = keyword_extract(doc)
-            keyS = keySentence(doc)
-            comm_moon = comment_moon(keyS)
-            comm = comm_emo + comm_moon
-            print(emotion)
-            print(comm)
-            print(keyW)
-            print(keyS)
+        emotion = get_emotion(doc)
+        comm_emo = comment_emo(emotion)
+        keyW = keyword_extract(doc)
+        keyS = keySentence(doc)
+        comm_moon = comment_moon(keyS)
+        comm = comm_emo + comm_moon
+        print(emotion)
+        print(comm)
+        print(keyW)
+        print(keyS)
