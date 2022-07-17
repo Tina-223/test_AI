@@ -121,52 +121,52 @@ def comment_emo(emotion):
     return emotion_comment
 
 
-def keyword_extract(doc):
-    def mmr(doc_embedding, candidate_embeddings, words, top_n, diversity):
-        word_doc_similarity = cosine_similarity(
-            candidate_embeddings, doc_embedding)
-        word_similarity = cosine_similarity(candidate_embeddings)
-        keywords_idx = [np.argmax(word_doc_similarity)]
-        candidates_idx = [i for i in range(
-            len(words)) if i != keywords_idx[0]]
+# def keyword_extract(doc):
+#     def mmr(doc_embedding, candidate_embeddings, words, top_n, diversity):
+#         word_doc_similarity = cosine_similarity(
+#             candidate_embeddings, doc_embedding)
+#         word_similarity = cosine_similarity(candidate_embeddings)
+#         keywords_idx = [np.argmax(word_doc_similarity)]
+#         candidates_idx = [i for i in range(
+#             len(words)) if i != keywords_idx[0]]
 
-        for _ in range(top_n - 1):
-            candidate_similarities = word_doc_similarity[candidates_idx, :]
-            target_similarities = np.max(
-                word_similarity[candidates_idx][:, keywords_idx], axis=1)
+#         for _ in range(top_n - 1):
+#             candidate_similarities = word_doc_similarity[candidates_idx, :]
+#             target_similarities = np.max(
+#                 word_similarity[candidates_idx][:, keywords_idx], axis=1)
 
-            mmr = (1-diversity) * candidate_similarities - \
-                diversity * target_similarities.reshape(-1, 1)
-            mmr_idx = candidates_idx[np.argmax(mmr)]
+#             mmr = (1-diversity) * candidate_similarities - \
+#                 diversity * target_similarities.reshape(-1, 1)
+#             mmr_idx = candidates_idx[np.argmax(mmr)]
 
-            keywords_idx.append(mmr_idx)
-            candidates_idx.remove(mmr_idx)
-        return [words[idx] for idx in keywords_idx]
+#             keywords_idx.append(mmr_idx)
+#             candidates_idx.remove(mmr_idx)
+#         return [words[idx] for idx in keywords_idx]
 
-    okt = Okt()
-    tokenized_doc = okt.pos(doc)
-    tokenized_nouns = ' '.join([word[0]
-                                for word in tokenized_doc if word[1] == 'Noun'])
-    n_gram_range = (1, 1)
-    count = CountVectorizer(
-        ngram_range=n_gram_range).fit([tokenized_nouns])
-    candidates = count.get_feature_names_out()
-    model = SentenceTransformer(
-        'sentence-transformers/xlm-r-100langs-bert-base-nli-stsb-mean-tokens')
-    doc_embedding = model.encode([doc])
-    candidate_embeddings = model.encode(candidates)
-    top_n = 5
-    distances = cosine_similarity(doc_embedding, candidate_embeddings)
-    keywords = [candidates[index]
-                for index in distances.argsort()[0][-top_n:]]
+#     okt = Okt()
+#     tokenized_doc = okt.pos(doc)
+#     tokenized_nouns = ' '.join([word[0]
+#                                 for word in tokenized_doc if word[1] == 'Noun'])
+#     n_gram_range = (1, 1)
+#     count = CountVectorizer(
+#         ngram_range=n_gram_range).fit([tokenized_nouns])
+#     candidates = count.get_feature_names_out()
+#     model = SentenceTransformer(
+#         'sentence-transformers/xlm-r-100langs-bert-base-nli-stsb-mean-tokens')
+#     doc_embedding = model.encode([doc])
+#     candidate_embeddings = model.encode(candidates)
+#     top_n = 5
+#     distances = cosine_similarity(doc_embedding, candidate_embeddings)
+#     keywords = [candidates[index]
+#                 for index in distances.argsort()[0][-top_n:]]
 
-    keyword = mmr(doc_embedding, candidate_embeddings,
-                  candidates, top_n=1, diversity=0.4)
+#     keyword = mmr(doc_embedding, candidate_embeddings,
+#                   candidates, top_n=1, diversity=0.4)
 
-    translator = Translator()
-    key = translator.translate(keyword[0], dest='en').text
+#     translator = Translator()
+#     key = translator.translate(keyword[0], dest='en').text
 
-    return key
+#     return key
 
 
 def keySentence(doc):
@@ -225,11 +225,11 @@ doc = """
 """
 emotion = get_emotion(doc)
 comm_emo = comment_emo(emotion)
-keyW = keyword_extract(doc)
+# keyW = keyword_extract(doc)
 keyS = keySentence(doc)
 comm_moon = comment_moon(keyS)
 comm = comm_emo + comm_moon
 print(emotion)
 print(comm)
-print(keyW)
+# print(keyW)
 print(keyS)
