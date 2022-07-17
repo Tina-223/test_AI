@@ -17,10 +17,10 @@ sqlparse==0.4.2
 tzdata==2022.1
 
 pandas
---find-links https://download.pytorch.org/whl/torch_stable.html
-torch==1.8.0+cu111 
-torchvision==0.9.0+cu111 
-torchaudio==0.8.0
+# --find-links https://download.pytorch.org/whl/torch_stable.html
+# torch==1.8.0+cu111 
+# torchvision==0.9.0+cu111 
+# torchaudio==0.8.0
 pytorch_lightning==1.2.10
 transformers
 torchtext==0.9.0
