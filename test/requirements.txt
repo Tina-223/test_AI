@@ -6,7 +6,7 @@ Django==4.0.5
 fonttools==4.33.3
 kiwisolver==1.4.2
 matplotlib==3.5.1
-numpy==1.22.3
+# numpy==1.22.3
 packaging==21.3
 Pillow==9.1.0
 pyparsing==3.0.8
@@ -24,7 +24,7 @@ pandas
 pytorch_lightning==1.2.10
 transformers
 torchtext==0.9.0
-# numpy
+numpy
 sentence-transformers
 konlpy
 googletrans==4.0.0-rc1
