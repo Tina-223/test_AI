@@ -19,8 +19,6 @@ from pytorch_lightning.core.lightning import LightningModule
 from transformers import PreTrainedTokenizerFast, GPT2LMHeadModel
 
 # Create your views here.
-
-
 class KoGPT2Comment(LightningModule):
     def __init__(self):
         super(KoGPT2Comment, self).__init__()
