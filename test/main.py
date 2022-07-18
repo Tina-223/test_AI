@@ -19,6 +19,8 @@ from pytorch_lightning.core.lightning import LightningModule
 from transformers import PreTrainedTokenizerFast, GPT2LMHeadModel
 
 # Create your views here.
+
+
 class KoGPT2Comment(LightningModule):
     def __init__(self):
         super(KoGPT2Comment, self).__init__()
@@ -204,14 +206,14 @@ def comment_moon(keysents):
     comment = ''
     for sent in keysents:
         comment = model.comment(sent)
-        if(comment[-1] is not '?' and (not '.' or not '!')):
+        if(comment[-1] != '?' and (not '.' or not '!')):
             comment = comment + '.'
         if(len(max_comment) <= len(comment)):
             max_comment = comment
         if(len(comment) > 8 and '?' not in comment and '저' not in comment):
             moon_comment = comment
             break
-    if(moon_comment is ''):
+    if(moon_comment == ''):
         moon_comment = max_comment
 
     return moon_comment  # database에 moon_comment 저장하는 코드 추가하기
