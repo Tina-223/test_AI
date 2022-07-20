@@ -242,11 +242,5 @@ def run_comment(doc):
     return comm_moon
 
 
-def run_emoandcomm(doc):
-    emotion = get_emotion(doc)
-    comm_emo = comment_emo(emotion)
-    keyS = keySentence(doc)
-    comm_moon = comment_moon(keyS)
-    comm = comm_emo + comm_moon
-
-    return emotion, comm
+def run_pixray(doc):
+    keyW = keyword_extract(doc)

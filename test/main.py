@@ -21,5 +21,5 @@ elif choice == 2:
     comm = ai.run_comment(doc)
     print(comm)
 else:
-    a, b = ai.run_emoandcomm(doc)
+    a, b = ai.run_pixray(doc)
     print(a, b)
