@@ -243,7 +243,15 @@ def run_comment(doc):
 
 
 def run_pixray(doc):
-    keyW = keyword_extract(doc)
+    # keyW = keyword_extract(doc)
+    # keyW = keyW.replace(' ', '_')
+    keyW = 'mountain_climbing'
+    os.chdir("drawing_diary/pixray")
+    sys.path.append("drawing_diary/pixray")
+    subprocess.run(
+        ["python", "pixray.py", "--drawer=line_sketch", "--prompt=%s" % (keyW), "--outdir=../output"])
+    PATH = "drawing_diary/output/output.png"
+    return keyW, PATH
 
 
 def run_keyword(doc):
