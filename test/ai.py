@@ -244,3 +244,8 @@ def run_comment(doc):
 
 def run_pixray(doc):
     keyW = keyword_extract(doc)
+
+
+def run_keyword(doc):
+    keyword = keyword_extract(doc)
+    return keyword

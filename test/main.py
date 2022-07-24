@@ -20,6 +20,9 @@ if choice == 1:
 elif choice == 2:
     comm = ai.run_comment(doc)
     print(comm)
-else:
+elif choice == 3:
     a, b = ai.run_pixray(doc)
     print(a, b)
+else:
+    keyw = ai.run_keyword(doc)
+    print(keyw)
